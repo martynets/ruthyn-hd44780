@@ -58,18 +58,8 @@ uninstall:
 	$(RM) "$(TARGETDIR)/$(TARGET)"
 	@$(SED) --in-place --follow-symlinks /$(CODEPAGE)/d "$(TARGETDIR)/gconv-modules"
 
-test: ruthyn-example
-	@echo "The following output should be in the ruthyn-hd44780 charset"
-	./ruthyn-example
-
-ruthyn-example: ruthyn-example.c $(TARGETDIR)/$(TARGET) $(TARGETDIR)/gconv-modules
-	GCONV_PATH=$(TARGETDIR) gcc -fexec-charset=ruthyn ruthyn-example.c -o ruthyn-example
-
-$(TARGETDIR)/$(TARGET) $(TARGETDIR)/gconv-modules &: $(TARGET)
-	@echo "Please run 'make install' before testing" && false
-
 clean:
-	$(RM) "$(TARGET)" ruthyn-example
+	$(RM) "$(TARGET)"
 
 # Build rules
 %.so: %.c $(HEADER_FILES)
