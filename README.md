@@ -57,6 +57,9 @@ GCONV_PATH=../gconv gcc -fexec-charset=ruthyn -c -o main.o main.c
 ```
 where `../gconv` is the directory the custom module is installed in and `ruthyn` is the name or alias of the custom code page implemented by the module.
 
+#### Example source code
+Please see the file [ruthyn-example.c](ruthyn-example.c) for a program with literal strings encoded in UTF-8 that output as the custom code page when compiled as described above. You may use `make test` to compile the example and run it.
+
 #### Bug Reporting
 You can send `ruthyn-hd44780` bug reports and/or any compatibility issues directly to the author [martynets@volia.ua](mailto:martynets@volia.ua).
 
