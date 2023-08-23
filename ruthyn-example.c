@@ -11,16 +11,6 @@
  * Compilation:
  *	GCONV_PATH=../gconv gcc  -fexec-charset=ruthyn  ruthyn-example.c
  *
- * Required during compilation:
- *	../gconv/gconv-modules				# Gconv catalog
- *	../gconv/ruthyn-hd44780.so			# Gconv module
- *
- * Once compiled, the executable does _not_ require the gconv files.
- *
- * Note that this works only for literal strings in the code as the
- * mapping happens at compilation time. Also, this method does not
- * affect input.
- *
  */
 
 int main() {
