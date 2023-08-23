@@ -5,20 +5,14 @@ See end of this file for license conditions.
 
 #### Introduction
 Usual constraint of a localized embedded application is the character set support by the output devices used by the implementation. As the periphery used in this domain normally is limited in resources and doesn't provide means for localization the application has to combine available means with custom character generators and non-standard coding.
-
 Real example is Cyrillic charset implementation by Epson's dot-matrix LCD controller based on HD44780 chip. It partially implements Russian alphabet which in turn is a subset of Ruthyn alphabet that covers Cyrillic based Slavic languages. This forces an application to convert string literals to character codes above 127 for Cyrillic symbols which patterns are implemented by the ROM character generator, to codes below 127 for symbols which look similar to some ASCII symbols and the rest to codes which correspond to patterns in the user defined character generator. Certainly, this leads to a non-standard code page.
-
 To have the application to operate with string literals coded with the non-standard code page we need the compiler to translate source code from its code page to the non-standard code page. Fortunately `gcc` offers such a functionality. The code page for the binary output can be selected by its `exec-charset` option (`-fexec-charset=<codepage>`). It employs `iconv` function for the conversion to be done. The GNU implementation of the function (it is part of the GNU C Library) uses external modules for conversion functions (`gconv`) for each particular code page. Normally systems come with wide range of modules for most standard code pages. Additionally the `iconv` function provides facilities to specify locations for custom modules. To solve our problem what we need is to develop a module for the non-standard code page, request the compiler to generate output string literals using our custom code page and inform the `iconv` function about the location of the module.
-
 The intention of this project is to provide an example of the solution which can be used as a template for a particular case. It is based on framework example taken from [GNU C Library documentation](https://www.gnu.org/software/libc/manual/html_node/glibc-iconv-Implementation.html) and the latest `skeleton.c` file. As we are interested only in output coded in non-standard way the conversion function implements unidirectional conversion: from the compiler's internal representation (UCS-4 encoded ISO 10646) to the target non-standard code page. It is expected that embedded applications operate with 8 bit character sets. Thus the conversion function is the case of non-stateful conversion from wide character to character types. The `iconv` concept was developed to cover cases of any complexity and much of its functionality isn't involved in our solution and wasn't ever tested.
-
 This example implementation solves the case described above and implements `gconv` module for conversion function to support Ruthyn alphabet on Epson HD44780 dot-matrix LCD controller.
 
 #### Software Requirements
 The source code of the `ruthyn-hd44780` module contains calls to standard C library functions only, is specific for the GNU C Library implementation and expects ISO 10646 encoding is used for wide character type. Thus it most likely can be compiled for any POSIX compliant system with GNU C Library installed but the author tested it in GNU/Linux environment only.
-
 To compile the module from the source code the following packages must be installed on a GNU/Linux system:
-
 - gcc
 - make
 - libc-dev
@@ -61,18 +55,10 @@ To get the source compiled with desired custom code page used for string literal
 ```
 GCONV_PATH=../gconv gcc -fexec-charset=ruthyn -c -o main.o main.c
 ```
-where `../gconv` is the directory the custom module is installed in
-and `ruthyn` is the name or alias of the custom code page implemented
-by the module.
-
-Note that the gconv files are not needed at run-time, only compilation.
+where `../gconv` is the directory the custom module is installed in and `ruthyn` is the name or alias of the custom code page implemented by the module.
 
 #### Example source code
-
-Please see the file [ruthyn-example.c](ruthyn-example.c) for a program
-with literal strings encoded in UTF-8 that output as the custom code
-page when compiled as described above. You may use `make test` to
-compile the example and run it.
+Please see the file [ruthyn-example.c](ruthyn-example.c) for a program with literal strings encoded in UTF-8 that output as the custom code page when compiled as described above. You may use `make test` to compile the example and run it.
 
 #### Bug Reporting
 You can send `ruthyn-hd44780` bug reports and/or any compatibility issues directly to the author [martynets@volia.ua](mailto:martynets@volia.ua).
