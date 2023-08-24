@@ -2,7 +2,7 @@
 
 /* ruthyn-example.c
  *
- * Tests out the the Unicode range between U+0400 and U+047F, which
+ * Tests out the the Unicode range between U+0400 and U+049F, which
  * includes all the ruthyn-hd44780 characters. The string literals in
  * this file are encoded in UTF-8 for easy development. When compiled
  * correctly, this program actually emits the Ruthyn single byte
@@ -30,6 +30,14 @@ int main() {
        "045_  ѐ  ё  ђ  ѓ  є  ѕ  і  ї  ј  љ  њ  ћ  ќ  ѝ  ў  џ \n"
        "046_  Ѡ  ѡ  Ѣ  ѣ  Ѥ  ѥ  Ѧ  ѧ  Ѩ  ѩ  Ѫ  ѫ  Ѭ  ѭ  Ѯ  ѯ \n"
        "047_  Ѱ  ѱ  Ѳ  ѳ  Ѵ  ѵ  Ѷ  ѷ  Ѹ  ѹ  Ѻ  ѻ  Ѽ  ѽ  Ѿ  ѿ \n"
+       "048_  Ҁ  ҁ  ҂  ҃  ҄  ҅  ҆  ҇  ҈  ҉  Ҋ  ҋ  Ҍ  ҍ  Ҏ  ҏ \n"
+       "049_  Ґ  ґ  Ғ  ғ  Ҕ  ҕ  Җ  җ  Ҙ  ҙ  Қ  қ  Ҝ  ҝ  Ҟ  ҟ  \n"
+    // "04A_  Ҡ  ҡ  Ң  ң  Ҥ  ҥ  Ҧ  ҧ  Ҩ  ҩ  Ҫ  ҫ  Ҭ  ҭ  Ү  ү  \n"
+    // "04B_  Ұ  ұ  Ҳ  ҳ  Ҵ  ҵ  Ҷ  ҷ  Ҹ  ҹ  Һ  һ  Ҽ  ҽ  Ҿ  ҿ  \n"
+    // "04C_  Ӏ  Ӂ  ӂ  Ӄ  ӄ  Ӆ  ӆ  Ӈ  ӈ  Ӊ  ӊ  Ӌ  ӌ  Ӎ  ӎ  ӏ  \n"
+    // "04D_  Ӑ  ӑ  Ӓ  ӓ  Ӕ  ӕ  Ӗ  ӗ  Ә  ә  Ӛ  ӛ  Ӝ  ӝ  Ӟ  ӟ  \n"
+    // "04E_  Ӡ  ӡ  Ӣ  ӣ  Ӥ  ӥ  Ӧ  ӧ  Ө  ө  Ӫ  ӫ  Ӭ  ӭ  Ӯ  ӯ  \n"
+    // "04F_  Ӱ  ӱ  Ӳ  ӳ  Ӵ  ӵ  Ӷ  ӷ  Ӹ  ӹ  Ӻ  ӻ  Ӽ  ӽ  Ӿ  ӿ  \n"
        );
 
   return 0;
